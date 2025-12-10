@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iQanat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+
+        <nav class="nav">
+            <ul class="nav__menu">
+                <li class="nav__menu-li">
+                    <a class="nav__menu-a" href="#">О проекте</a>
+                </li>
+
+                <li class="nav__menu-li">
+                    <a class="nav__menu-a" href="#">Структура проекта</a>
+                </li>
+
+                <li class="nav__menu-li">
+                    <a class="nav__menu-a" href="#">Курсы</a>
+                </li>
+
+                <li class="nav__menu-li">
+                    <a class="nav__menu-a" href="#">Новости</a>
+                </li>
+
+                <li class="nav__menu-li">
+                    <a class="nav__menu-a" href="#">Лучшие участники</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="nav__actions">
+
+            <button class="btn-login">
+                <img src="assets/img/user.png" alt="user" class="btn-login__img">
+                Войти
+            </button>
+
+            <div class="lang-select">
+                <button class="lang-select__btn">
+                    Русский
+                    <img src="assets/img/arrow.png" alt="arrow" width="18" height="10">
+                </button>
+
+                <ul class="lang-select__list">
+                    <li data-lang="ru">Русский</li>
+                    <li data-lang="kz">Қазақша</li>
+                    <li data-lang="en">English</li>
+                </ul>
+            </div>
+
+            <a href="#" class="insta">
+                <img src="assets/img/Instagram.png" alt="Instagram" width="47" height="47">
+            </a>
+
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <video class="hero__video" autoplay muted loop playsinline>
+        <source src="assets/video/bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+        <h1 class="hero__content-title">iQanat Peer-to-Peer</h1>
+        <p class="hero__content-text">
+            Самостоятельная образовательная экосистема, в которой опытные участники направляют новых,
+            создавая культуру взаимной помощи и служения обществу – Giving back
+        </p>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

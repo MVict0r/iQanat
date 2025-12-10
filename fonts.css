@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayRegular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayMedium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayBold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayHeavyItalic.otf") format("opentype");
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayBlackItalic.otf") format("opentype");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayThinItalic.otf") format("opentype");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("assets/fonts/SFProDisplayUltralightItalic.otf") format("opentype");
+    font-weight: 100;
+    font-style: italic;
+}
