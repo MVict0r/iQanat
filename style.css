@@ -493,14 +493,16 @@ body {
 
 /*GSAP photo*/
 .photos-section {
-    padding: 150px 0;
+    margin: 0 auto;
+    max-width: 1600px;
+    padding: 10px 0;
 
     display: grid;
     grid-template-columns: repeat(2, auto);
     justify-content: center;
     align-items: start;
 
-    column-gap: 180px; /* расстояние между фото */
+    column-gap: 40px; /* расстояние между фото */
     row-gap: 0;
 }
 
@@ -510,6 +512,6 @@ body {
 }
 
 .photo2 {
-    margin-top: 120px; /* опускаем правую картинку */
+    margin-top: 240px; /* опускаем правую картинку */
 }
 
