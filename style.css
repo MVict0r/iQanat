@@ -494,24 +494,88 @@ body {
 /*GSAP photo*/
 .photos-section {
     margin: 0 auto;
-    max-width: 1600px;
-    padding: 10px 0;
+    max-width: 90%;
+    padding: 170px 0;
 
     display: grid;
     grid-template-columns: repeat(2, auto);
-    justify-content: center;
+    justify-content: space-between;
     align-items: start;
 
-    column-gap: 40px; /* расстояние между фото */
     row-gap: 0;
 }
 
 .photo {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(120px);
 }
 
 .photo2 {
-    margin-top: 240px; /* опускаем правую картинку */
+    margin-top: 240px;
 }
 
+/*CTA-SECTION*/
+.cta-section {
+    display: flex;
+    justify-content: center;
+    padding: 150px 0;
+}
+
+.cta-container {
+    background: #F6F6F6;
+    border-radius: 60px;
+    max-width: 1600px;
+    width: 100%;
+    padding: 80px;
+
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr;*/
+    /*align-items: center;*/
+    position: relative;
+}
+
+.cta-title {
+    font-size: 88px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    /*background: linear-gradient(90deg, #2D55F3 0%, #FF9345 50%, #8453D8 100%);*/
+    background: linear-gradient(272.28deg, #1842F0 48.46%, #FF893F 71.5%, #1842F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-btn {
+    background: #1B4BFF;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 28px;
+
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #0036E0;
+    transform: translateY(-2px);
+}
+
+.cta-image-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cta-image {
+    /*width: 500px;*/
+    object-fit: contain;
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+}

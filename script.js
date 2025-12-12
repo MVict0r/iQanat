@@ -52,38 +52,76 @@ document.addEventListener('click', (e) => {
 //
 // });
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
+//
+// gsap.utils.toArray(".fade-item").forEach((elem) => {
+//
+//     gsap.fromTo(
+//       elem,
+//       { opacity: 0, y: 100 },
+//       {
+//           opacity: 1,
+//           y: 0,
+//           scrollTrigger: {
+//               trigger: elem,
+//               start: "top 90%",
+//               end: "top 40%",
+//               scrub: true
+//           }
+//       }
+//     );
+//
+//     gsap.fromTo(
+//       elem,
+//       { opacity: 1, y: 0 },
+//       {
+//           opacity: 0,
+//           y: -100,
+//           scrollTrigger: {
+//               trigger: elem,
+//               start: "top 40%",
+//               end: "top 0%",
+//               scrub: true
+//           }
+//       }
+//     );
+//
+// });
 
 gsap.utils.toArray(".fade-item").forEach((elem) => {
 
+    // Появление
     gsap.fromTo(
-      elem,
-      { opacity: 0, y: 100 },
-      {
-          opacity: 1,
-          y: 0,
-          scrollTrigger: {
-              trigger: elem,
-              start: "top 90%",
-              end: "top 40%",
-              scrub: true
-          }
-      }
+        elem,
+        { opacity: 0, y: 120 },
+        {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: elem,
+                start: "top 85%",  // появляется позже (лучше)
+                end: "top 55%",    // не исчезает слишком рано
+                scrub: true
+            }
+        }
     );
 
+    // Исчезновение
     gsap.fromTo(
-      elem,
-      { opacity: 1, y: 0 },
-      {
-          opacity: 0,
-          y: -100,
-          scrollTrigger: {
-              trigger: elem,
-              start: "top 40%",
-              end: "top 0%",
-              scrub: true
-          }
-      }
+        elem,
+        { opacity: 1, y: 0 },
+        {
+            opacity: 0,
+            y: -120,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: elem,
+                start: "top 40%", // исчезать начинает ПОЗЖЕ
+                end: "top 5%",    // исчезает ближе к верху → идеально
+                scrub: true
+            }
+        }
     );
 
 });
