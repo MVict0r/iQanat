@@ -579,3 +579,176 @@ body {
     bottom: 0;
     right: -50px;
 }
+
+
+/*-------------COURSES--------------------*/
+.courses{
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 120px 0;
+}
+.courses-title {
+    font-size: 72px;
+    margin: 30px 0 20px 0;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.courses-card {
+    min-width: 330px;
+    max-width: 330px;
+    background: #F3F3F3;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.courses-card:hover {
+    transform: translateY(-4px);
+}
+
+.courses-card__img {
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.courses-card__title {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 32px 32px 12px 32px;
+}
+
+.courses-card__text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: #A4A4A4;
+    margin: 0 32px 32px 32px;
+}
+
+.carousel-btn{
+    position: absolute;
+    bottom: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+}
+
+.courses-nav {
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.courses-nav:hover {
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+/*-------------------how-study-----------------*/
+.how-study {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 120px 0;
+}
+
+.how-study .title {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 60px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.step-card {
+    background: #F3F3F3;
+    border-radius: 36px;
+    padding: 32px;
+    position: relative;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.step-card__title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-bottom: 16px;
+}
+
+.step-card__text {
+    color: #A4A4A4;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.step-card__img{
+    width: 200px;
+    max-height: 231px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.step-card .num {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    font-size: 60px;
+    font-weight: 400;
+    color: #A4A4A4;
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-card {
+        min-height: 220px;
+    }
+
+    .step-card img {
+        width: 90px;
+    }
+}
