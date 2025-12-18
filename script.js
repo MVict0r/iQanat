@@ -144,6 +144,20 @@ gsap.utils.toArray(".fade-item").forEach((elem) => {
     }
 });
 
+gsap.utils.toArray(".photos-section").forEach((section) => {
+
+    const overlay = section.querySelector(".photos-overlay");
+
+    ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        pin: overlay,
+        pinSpacing: true   // 🔑 ВАЖНО
+    });
+
+});
+
 
 const carousel = document.querySelector(".carousel");
 const btnPrev = document.querySelector(".prev");
