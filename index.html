@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iQanat</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="media.css">
 </head>
 <body>
 <header class="header">
     <div class="header-container">
 
-        <nav class="nav">
-            <ul class="nav__menu">
-                <li class="nav__menu-li">
-                    <a class="nav__menu-a" href="#">О проекте</a>
-                </li>
+        <div class="header__left">
+            <button class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-                <li class="nav__menu-li">
-                    <a class="nav__menu-a" href="#">Структура проекта</a>
-                </li>
-
-                <li class="nav__menu-li">
-                    <a class="nav__menu-a" href="#">Курсы</a>
-                </li>
-
-                <li class="nav__menu-li">
-                    <a class="nav__menu-a" href="#">Новости</a>
-                </li>
-
-                <li class="nav__menu-li">
-                    <a class="nav__menu-a" href="#">Лучшие участники</a>
-                </li>
-            </ul>
-        </nav>
+            <nav class="nav">
+                <ul class="nav__menu">
+                    <li><a href="#" data-i18n="nav_about">О проекте</a></li>
+                    <li><a href="#" data-i18n="nav_structure">Структура проекта</a></li>
+                    <li><a href="#" data-i18n="nav_courses">Курсы</a></li>
+                    <li><a href="#" data-i18n="nav_news">Новости</a></li>
+                    <li><a href="#" data-i18n="nav_best-participants">Лучшие участники</a></li>
+                </ul>
+            </nav>
+        </div>
 
         <div class="nav__actions">
 
             <button class="btn-login">
-                <img src="assets/img/user.png" alt="user" class="btn-login__img">
-                Войти
+                <img src="assets/img/user.png" class="btn-login__img" alt="">
+                <span data-i18n="btn_login">Войти</span>
             </button>
 
             <div class="lang-select">
                 <button class="lang-select__btn">
                     Русский
-                    <img src="assets/img/arrow.png" alt="arrow" width="18" height="10">
+                    <img src="assets/img/arrow.png" width="18" height="10" />
                 </button>
-
                 <ul class="lang-select__list">
                     <li data-lang="ru">Русский</li>
                     <li data-lang="kz">Қазақша</li>
@@ -55,7 +50,7 @@
             </div>
 
             <a href="#" class="insta">
-                <img src="assets/img/Instagram.png" alt="Instagram" width="47" height="47">
+                <img src="assets/img/Instagram.png" width="32" height="32" />
             </a>
 
         </div>
@@ -71,7 +66,7 @@
 
     <div class="hero__content">
         <h1 class="hero__content-title">iQanat Peer-to-Peer</h1>
-        <p class="hero__content-text">
+        <p class="hero__content-text" data-i18n="hero_text">
             Самостоятельная образовательная экосистема, в которой опытные участники направляют новых,
             создавая культуру взаимной помощи и служения обществу – Giving back
         </p>
@@ -139,7 +134,7 @@
     </div>
 
     <!-- Белый блок текста поверх -->
-    <div class="slider-text">
+    <div class="slider-text" data-i18n="slider_text">
         Цель программы “IQanat Peer-to-Peer” — помочь учащимся из сельской местности восполнить пробелы в школьных знаниях, подготовиться к Олимпиаде IQanat с помощью активного наставничества и поддержки.
     </div>
 </section>
@@ -186,7 +181,7 @@
                 <div class="value-card__icon">
                     <img src="assets/icons/ico-1.png" alt="">
                 </div>
-                <p class="value-card__text">Просвещенность и стремление к знаниям.</p>
+                <p class="value-card__text">Просвещенность и стремление к знаниям</p>
                 <span class="value-card__number">04</span>
             </div>
 
@@ -292,107 +287,107 @@
     </div>
 </section>
 
-<section class="courses">
-    <h2 class="courses-title">Курсы</h2>
+<!--<section class="courses">-->
+<!--    <h2 class="courses-title">Курсы</h2>-->
 
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="courses-card">
-                <img src="assets/img/math.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">Математика</h3>
-                <p class="courses-card__text">Освоение ключевых тем 7–8 классов и решение практических задач.</p>
-            </div>
+<!--    <div class="carousel-container">-->
+<!--        <div class="carousel">-->
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/math.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">Математика</h3>-->
+<!--                <p class="courses-card__text">Освоение ключевых тем 7–8 классов и решение практических задач.</p>-->
+<!--            </div>-->
 
-            <div class="courses-card">
-                <img src="assets/img/physics.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">Физика</h3>
-                <p class="courses-card__text">Разбор основных тем и изучение фундаментальных физических явлений.</p>
-            </div>
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/physics.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">Физика</h3>-->
+<!--                <p class="courses-card__text">Разбор основных тем и изучение фундаментальных физических явлений.</p>-->
+<!--            </div>-->
 
-            <div class="courses-card">
-                <img src="assets/img/chemistry.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">Химия</h3>
-                <p class="courses-card__text">Системное изучение химических понятий и процессов.</p>
-            </div>
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/chemistry.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">Химия</h3>-->
+<!--                <p class="courses-card__text">Системное изучение химических понятий и процессов.</p>-->
+<!--            </div>-->
 
-            <div class="courses-card">
-                <img src="assets/img/biology.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">Биология</h3>
-                <p class="courses-card__text">Изучение основ биологических процессов.</p>
-            </div>
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/biology.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">Биология</h3>-->
+<!--                <p class="courses-card__text">Изучение основ биологических процессов.</p>-->
+<!--            </div>-->
 
-            <div class="courses-card">
-                <img src="assets/img/english.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">Английский</h3>
-                <p class="courses-card__text">Грамотное чтение, устная и письменная речь.</p>
-            </div>
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/english.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">Английский</h3>-->
+<!--                <p class="courses-card__text">Грамотное чтение, устная и письменная речь.</p>-->
+<!--            </div>-->
 
-            <div class="courses-card">
-                <img src="assets/img/geography.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title">География</h3>
-                <p class="courses-card__text">Изучение природных и социально-географических особенностей мирасогласно программе 7–8 классов.</p>
-            </div>
-        </div>
+<!--            <div class="courses-card">-->
+<!--                <img src="assets/img/geography.png" alt="" class="courses-card__img">-->
+<!--                <h3 class="courses-card__title">География</h3>-->
+<!--                <p class="courses-card__text">Изучение природных и социально-географических особенностей мирасогласно программе 7–8 классов.</p>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="carousel-btn">
-            <button class="courses-nav prev">
-                <img src="assets/icons/prev.png" alt="">
-            </button>
-            <button class="courses-nav next">
-                <img src="assets/icons/next.png" alt="">
-            </button>
-        </div>
-    </div>
-</section>
+<!--        <div class="carousel-btn">-->
+<!--            <button class="courses-nav prev">-->
+<!--                <img src="assets/icons/prev.png" alt="">-->
+<!--            </button>-->
+<!--            <button class="courses-nav next">-->
+<!--                <img src="assets/icons/next.png" alt="">-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
-<section class="how-study">
-    <h2 class="title">Как проходит обучение</h2>
+<!--<section class="how-study">-->
+<!--    <h2 class="title">Как проходит обучение</h2>-->
 
-    <div class="grid">
-        <div class="step-card">
-            <h3 class="step-card__title">Регистрация на курс</h3>
-            <p class="step-card__text">Ученик регистрируется на платформе, выбирает необходимый курс и язык обучения</p>
-            <img src="assets/icons/check.png" alt="" class="step-card__img">
-            <span class="num">01</span>
-        </div>
+<!--    <div class="grid">-->
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Регистрация на курс</h3>-->
+<!--            <p class="step-card__text">Ученик регистрируется на платформе, выбирает необходимый курс и язык обучения</p>-->
+<!--            <img src="assets/icons/check.png" alt="" class="step-card__img">-->
+<!--            <span class="num">01</span>-->
+<!--        </div>-->
 
-        <div class="step-card">
-            <h3 class="step-card__title">Входной тест</h3>
-            <p class="step-card__text">Проводится перед началом курса для определения уровня знаний ученика</p>
-            <img src="assets/icons/test.png" alt="" class="step-card__img">
-            <span class="num">02</span>
-        </div>
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Входной тест</h3>-->
+<!--            <p class="step-card__text">Проводится перед началом курса для определения уровня знаний ученика</p>-->
+<!--            <img src="assets/icons/test.png" alt="" class="step-card__img">-->
+<!--            <span class="num">02</span>-->
+<!--        </div>-->
 
-        <div class="step-card">
-            <h3 class="step-card__title">Участие в онлайн-уроках с тьютором</h3>
-            <p class="step-card__text">Онлайн-уроки проходят 2 раза в неделю на платформе Google Meet. Ссылку на урок можно найти в разделе “Онлайн урок”.</p>
-            <img src="assets/icons/video.png" alt="" class="step-card__img">
-            <span class="num">03</span>
-        </div>
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Участие в онлайн-уроках с тьютором</h3>-->
+<!--            <p class="step-card__text">Онлайн-уроки проходят 2 раза в неделю на платформе Google Meet. Ссылку на урок можно найти в разделе “Онлайн урок”.</p>-->
+<!--            <img src="assets/icons/video.png" alt="" class="step-card__img">-->
+<!--            <span class="num">03</span>-->
+<!--        </div>-->
 
-        <div class="step-card">
-            <h3 class="step-card__title">Практическая работа</h3>
-            <p class="step-card__text">На каждом уроке учащиеся закрепляют свои знания практическими заданиями, которые выполняются на платформе во время урока.</p>
-            <img src="assets/icons/laptop.png" alt="" class="step-card__img">
-            <span class="num">04</span>
-        </div>
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Практическая работа</h3>-->
+<!--            <p class="step-card__text">На каждом уроке учащиеся закрепляют свои знания практическими заданиями, которые выполняются на платформе во время урока.</p>-->
+<!--            <img src="assets/icons/laptop.png" alt="" class="step-card__img">-->
+<!--            <span class="num">04</span>-->
+<!--        </div>-->
 
-        <div class="step-card">
-            <h3 class="step-card__title">Домашнее задание</h3>
-            <p class="step-card__text">По завершении урока учащиеся проходят домашнее задание на платформе — его необходимо выполнить до следующего занятия</p>
-            <img src="assets/icons/target.png" alt="" class="step-card__img">
-            <span class="num">05</span>
-        </div>
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Домашнее задание</h3>-->
+<!--            <p class="step-card__text">По завершении урока учащиеся проходят домашнее задание на платформе — его необходимо выполнить до следующего занятия</p>-->
+<!--            <img src="assets/icons/target.png" alt="" class="step-card__img">-->
+<!--            <span class="num">05</span>-->
+<!--        </div>-->
 
-        <div class="step-card">
-            <h3 class="step-card__title">Итоговый контроль (тест)</h3>
-            <p class="step-card__text">Проводится в конце каждого месяца обучения для оценки прогресса и уровня усвоения материала.</p>
-            <img src="assets/icons/cup.png" alt="" class="step-card__img">
-            <span class="num">06</span>
-        </div>
+<!--        <div class="step-card">-->
+<!--            <h3 class="step-card__title">Итоговый контроль (тест)</h3>-->
+<!--            <p class="step-card__text">Проводится в конце каждого месяца обучения для оценки прогресса и уровня усвоения материала.</p>-->
+<!--            <img src="assets/icons/cup.png" alt="" class="step-card__img">-->
+<!--            <span class="num">06</span>-->
+<!--        </div>-->
 
-    </div>
-</section>
+<!--    </div>-->
+<!--</section>-->
 
 
 
@@ -400,6 +395,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
 
+<script src="lang.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
