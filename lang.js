@@ -302,5 +302,65 @@ const langArr = {
         "ru": "Проводится в конце каждого месяца обучения для оценки прогресса и уровня усвоения материала.",
         "kz": "Оқу барысындағы жетістіктер мен материалды меңгеру деңгейін бағалау үшін әр оқу айының соңында өткізіледі.",
         "en": "Conducted at the end of each month to assess progress and the level of material mastery"
+    },
+
+    "best_participants_title": {
+        "ru": "Лучшие участники",
+        "kz": "Үздік қатысушылар",
+        "en": "Top Participants"
+    },
+
+    "best_tutors_title": {
+        "ru": "Лучшие тьюторы",
+        "kz": "Үздік тьюторлар",
+        "en": "Top Tutors"
+    },
+
+    "badge_kz_history": {
+        "ru": "История Казахстана",
+        "kz": "Қазақстан тарихы",
+        "en": "History of Kazakhstan"
+    },
+
+    "date_feb_9": {
+        "ru": "9 февраля",
+        "kz": "9 ақпан",
+        "en": "February 9"
+    },
+
+    "news_title": {
+        "ru": "Новости",
+        "kz": "Жаңалықтар",
+        "en": "News"
+    },
+
+    "news_card_title": {
+        "ru": "Заголовок",
+        "kz": "Тақырып",
+        "en": "Title"
+    },
+
+    "news_card_desc": {
+        "ru": "Описание",
+        "kz": "Сипаттама",
+        "en": "Description"
+    },
+
+    "news_card_date": {
+        "ru": "Дата",
+        "kz": "Күні",
+        "en": "Date"
+    },
+
+    "news_more": {
+        "ru": "Подробнее",
+        "kz": "Толығырақ",
+        "en": "Read more"
+    },
+
+    "news_more_all": {
+        "ru": "Больше новостей",
+        "kz": "Көбірек жаңалықтар",
+        "en": "More news"
     }
 };
