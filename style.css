@@ -879,24 +879,3 @@ body {
 .step-card:hover .num {
     color: rgba(255, 137, 63);
 }
-
-/* Адаптив */
-@media (max-width: 992px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .step-card {
-        min-height: 220px;
-    }
-
-    .step-card img {
-        width: 90px;
-    }
-}
