@@ -1012,6 +1012,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+.news-card__content{
+    margin-top: auto;
+}
 
 .news-card__title {
     font-family: "Inter", sans-serif;
