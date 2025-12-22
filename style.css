@@ -1005,7 +1005,7 @@ body {
     background: #F3F3F3;
     border-radius: 36px;
     padding: 20px;
-    width: 304px;
+    width: 100%;
     min-height: 380px;
 
     display: flex;

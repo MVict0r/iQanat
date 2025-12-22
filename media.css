@@ -84,6 +84,15 @@
         font-size: 28px;
         line-height: 32px;
     }
+
+    /*----------------------------------------NEWS----------------------------------------*/
+    .news__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .news__title {
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -224,6 +233,15 @@
 
     .step-card .num {
         font-size: 52px;
+    }
+
+    /*------------------------------------------------NEWS-----------------------------------------*/
+    .news__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .news {
+        padding: 70px 20px;
     }
 }
 
@@ -461,6 +479,21 @@
     .step-card .num {
         font-size: 48px;
     }
+
+    /*---------------------------------------------------------NEWS------------------------------------*/
+    .news__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .news-card {
+        min-height: 360px;
+    }
+
+    .news__title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
 }
 
 
@@ -672,5 +705,35 @@
         font-size: 36px;
         margin-top: 12px;
         color: #C0C0C0;
+    }
+
+    /*----------------------------------------------NEWS-----------------------------------------------*/
+    .news__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-card {
+        min-height: auto;
+        padding: 20px;
+        border-radius: 24px;
+    }
+
+    .news-card__title {
+        font-size: 20px;
+    }
+
+    .news-card__desc {
+        font-size: 16px;
+    }
+
+    .news-card__btn {
+        font-size: 16px;
+        padding: 14px 0;
+    }
+
+    .news__more-btn {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
     }
 }
