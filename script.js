@@ -1,8 +1,22 @@
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav');
+const actions = document.querySelector('.nav__actions');
+const overlay = document.querySelector('.menu-overlay');
 
 burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
     nav.classList.toggle('active');
+    overlay.classList.toggle('active');
+
+    document.body.style.overflow =
+        document.body.style.overflow === 'hidden' ? '' : 'hidden';
+});
+
+overlay.addEventListener('click', () => {
+    burger.classList.remove('active');
+    nav.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
 });
 
 // 2. ЛОГИКА МУЛЬТИЯЗЫЧНОСТИ
@@ -153,55 +167,100 @@ gsap.utils.toArray(".stats-card__number").forEach((el) => {
     });
 });
 
-// PHOTO SECTION------------------------------------------------------------------
-// Находим все секции с классом .photos-section и перебираем их по одной
+// // PHOTO SECTION------------------------------------------------------------------
+// // Находим все секции с классом .photos-section и перебираем их по одной
+// gsap.utils.toArray(".photos-section").forEach((section) => {
+//
+//     // Внутри текущей секции находим нужные элементы
+//     const overlay = section.querySelector(".photos-overlay");
+//     const content = section.querySelector(".photos-overlay__content");
+//     const photos = section.querySelectorAll(".photo");
+//
+//     // 1. Логика "Прилипания" (Pinning) для текущей секции
+//     ScrollTrigger.create({
+//         trigger: section,    // Триггером является ИМЕННО ЭТА секция
+//         start: "top top",
+//         end: "bottom bottom",
+//         pin: overlay,        // Закрепляем ИМЕННО ЭТОТ оверлей
+//         pinSpacing: false    // Важно: отключаем добавление отступов, так как оверлей absolute
+//     });
+//
+//     // 2. Анимация появления текста внутри текущей секции
+//     gsap.from(content, {
+//         scrollTrigger: {
+//             trigger: section,
+//             start: "top 60%",
+//             toggleActions: "play none none reverse"
+//         },
+//         y: 50,
+//         opacity: 0,
+//         duration: 0.8,
+//         ease: "power2.out"
+//     });
+//
+//     // 3. Анимация фото внутри текущей секции
+//     // Мы перебираем фото, чтобы добавить задержку (index * 0.1)
+//     // которая сбрасывается для каждой новой секции
+//     photos.forEach((photo, index) => {
+//         gsap.from(photo, {
+//             scrollTrigger: {
+//                 trigger: photo, // Каждое фото триггерит само себя
+//                 start: "top 85%",
+//                 toggleActions: "play none none reverse"
+//             },
+//             y: 100,
+//             opacity: 0,
+//             duration: 1,
+//             delay: index * 0.1 // Первая фото - 0с, вторая - 0.1с и т.д.
+//         });
+//     });
+// });
+
+// Перебираем все секции
 gsap.utils.toArray(".photos-section").forEach((section) => {
 
-    // Внутри текущей секции находим нужные элементы
+    // Находим элементы внутри секции
     const overlay = section.querySelector(".photos-overlay");
     const content = section.querySelector(".photos-overlay__content");
     const photos = section.querySelectorAll(".photo");
 
-    // 1. Логика "Прилипания" (Pinning) для текущей секции
+    // 1. Логика "Прилипания" (Работает везде)
     ScrollTrigger.create({
-        trigger: section,    // Триггером является ИМЕННО ЭТА секция
+        trigger: section,
         start: "top top",
         end: "bottom bottom",
-        pin: overlay,        // Закрепляем ИМЕННО ЭТОТ оверлей
-        pinSpacing: false    // Важно: отключаем добавление отступов, так как оверлей absolute
+        pin: overlay,       // Текст прилипает
+        pinSpacing: false   // Отступы не добавляем
     });
 
-    // 2. Анимация появления текста внутри текущей секции
+    // 2. Анимация текста
     gsap.from(content, {
         scrollTrigger: {
             trigger: section,
             start: "top 60%",
             toggleActions: "play none none reverse"
         },
-        y: 50,
+        y: 30, // Чуть меньше амплитуда для аккуратности
         opacity: 0,
         duration: 0.8,
         ease: "power2.out"
     });
 
-    // 3. Анимация фото внутри текущей секции
-    // Мы перебираем фото, чтобы добавить задержку (index * 0.1)
-    // которая сбрасывается для каждой новой секции
+    // 3. Анимация фото
     photos.forEach((photo, index) => {
         gsap.from(photo, {
             scrollTrigger: {
-                trigger: photo, // Каждое фото триггерит само себя
-                start: "top 85%",
+                trigger: photo,
+                start: "top 90%", // На мобилке лучше срабатывать раньше (90%)
                 toggleActions: "play none none reverse"
             },
-            y: 100,
+            y: 50,
             opacity: 0,
-            duration: 1,
-            delay: index * 0.1 // Первая фото - 0с, вторая - 0.1с и т.д.
+            duration: 0.8,
+            delay: index * 0.1 // Задержка лесенкой
         });
     });
 });
-
 
 // COURSES-SECTION
 // Создаем сценарий (timeline) для секции курсов

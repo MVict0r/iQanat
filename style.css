@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     font-family: "SF Pro Display", sans-serif;
 }
@@ -28,6 +38,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding: 0 5px;
 }
 
 /* ------------ Navigation Menu ------------ */
@@ -179,6 +191,33 @@ body {
     transition: 0.3s;
 }
 
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.burger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 /*----------------------------HERO-----------------------------------*/
 .hero {
     position: relative;
@@ -233,19 +272,7 @@ body {
     line-height: 36px;
 }
 
-/* адаптив */
-@media (max-width: 768px) {
-    .hero__content-title {
-        font-size: 36px;
-    }
-
-    .hero__content-text {
-        font-size: 18px;
-    }
-}
-
 /*sliders block*/
-
 .slider-section {
     position: relative;
     padding: 20px 0;
@@ -341,7 +368,8 @@ body {
 
 /*values*/
 .values {
-    padding: 100px 0;
+    padding: 100px 10px;
+    overflow: hidden;
 }
 
 .values__container {
@@ -424,9 +452,9 @@ body {
 }
 
 
-/*stats*/
+/*---------------------stats------------------------*/
 .stats {
-    padding: 120px 0;
+    padding: 120px 10px;
     position: relative;
     overflow: hidden;
 }

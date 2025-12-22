@@ -8,44 +8,67 @@
         line-height: 32px;
     }
 
-    /**/
+    /*-------------SLIDER----------------------*/
     .slider-text {
         font-size: 32px;
         line-height: 38px;
         max-width: 1100px;
     }
 
-    /**/
+    /*----------------VALUES---------------------*/
+    .values__container {
+        grid-template-columns: 460px 1fr;
+        gap: 28px;
+    }
+
     .values__main-card h2 {
-        font-size: 56px;
-        line-height: 62px;
+        font-size: 64px;
+        line-height: 70px;
     }
 
     .value-card__text {
-        font-size: 26px;
+        font-size: 28px;
         line-height: 32px;
     }
 
-    /**/
+    .values__heart {
+        position: absolute;
+        top: -120px;
+        right: -90px;
+        width: 247px;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    /*--------------STATS--------------*/
+    .stats__container {
+        grid-template-columns: 460px 1fr;
+    }
+
     .stats__title h2 {
-        font-size: 56px;
+        font-size: 64px;
     }
 
     .stats-card__number {
         font-size: 48px;
     }
-/*    */
+
+    /*--------------------PHOTOS-------------------*/
+    .photos-grid {
+        gap: 50px; /* Уменьшаем дырки между фото */
+    }
+    .photo:nth-child(even) {
+        margin-top: 150px; /* Уменьшаем сдвиг шахматки */
+    }
+
+    /*--------------------CTA-------------------*/
 
     .cta-title {
         font-size: 72px;
     }
 }
 
-/* =========================
-   <= 1200px (Laptop)
-========================= */
 @media (max-width: 1200px) {
-
     .nav__menu a {
         font-size: 16px;
         padding: 8px 12px;
@@ -61,6 +84,7 @@
         padding: 0 20px;
     }
 
+    /*----------------HERO-----------------*/
     .hero__content-title {
         font-size: 64px;
     }
@@ -74,6 +98,7 @@
         max-width: 760px;
     }
 
+    /*----------SLIDER--------------------------*/
     .slider-row {
         height: 200px;
     }
@@ -87,121 +112,124 @@
         font-size: 28px;
         line-height: 34px;
         padding: 36px;
+        max-width: 90%;
     }
 
 
-    /*--------------*/
+    /*-------------values------------------------------*/
+    .values {
+        padding: 80px 10px;
+    }
+
     .values__container {
         grid-template-columns: 420px 1fr;
     }
 
     .values__main-card h2 {
-        font-size: 48px;
-        line-height: 54px;
-        margin: 36px;
-    }
-
-    .values__heart {
-        width: 200px;
-        top: -90px;
-        right: -60px;
+        font-size: 56px;
+        line-height: 62px;
+        margin: 36px 0 0 36px;
     }
 
     .value-card {
         min-height: 260px;
+        padding: 28px;
     }
 
     .value-card__text {
-        font-size: 22px;
-        line-height: 28px;
+        font-size: 24px;
+        line-height: 30px;
     }
 
-/*    */
+    .values__heart {
+        width: 220px;
+        top: -100px;
+        right: -70px;
+    }
+
+    /*----------------------STATS-------------------------*/
+
+    .stats {
+        padding: 100px 10px;
+    }
 
     .stats__container {
         grid-template-columns: 420px 1fr;
-    }
-
-    .stats__title h2 {
-        font-size: 48px;
+        gap: 10px;
     }
 
     .stats-card {
-        padding: 36px;
-        border-radius: 28px;
+        padding: 30px;
     }
 
-    .stats-card__number {
-        font-size: 42px;
+    .stats-card__text {
+        font-size: 18px;
     }
 
-/*    */
+    /*---------------PHOTOS-SECTION----------------------------*/
 
     .photos-section {
-        padding: 120px 0;
+        padding: 100px 0; /* Меньше воздуха сверху/снизу */
     }
-
-    .photo2 {
-        margin-top: 160px;
+    .photos-grid {
+        gap: 60px;
     }
-
-    /*CTA______________________*/
-    .cta-container {
-        padding: 64px;
+    .photo:nth-child(even) {
+        margin-top: 300px;
     }
-
-    .cta-title {
-        font-size: 60px;
+    .photos-overlay__content {
+        padding: 50px 20px;
+        max-width: 600px;
     }
-
-    .cta-image {
-        max-width: 420px;
+    .photos-overlay__title {
+        font-size: 32px;
+    }
+    .photos-overlay__text {
+        font-size: 16px;
     }
 }
 
-/* =========================
-   <= 992px (Tablet)
-========================= */
 @media (max-width: 992px) {
-
-    /* Показываем бургер */
     .burger {
         display: flex;
+        z-index: 1101;
     }
 
-    /* Прячем навигацию */
     .nav {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: rgba(15, 15, 15, 0.95);
-        backdrop-filter: blur(10px);
+        position: fixed;
+            top: 0;
+            left: -100%;
 
-        transform: translateY(-120%);
-        transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 360px;
+            height: 100vh;
+
+            background: #0F0F0F;
+            padding: 90px 20px 24px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            transition: left 0.35s ease;
+            z-index: 1100;
     }
 
     .nav.active {
-        transform: translateY(0);
+        left: 0;
     }
 
     .nav__menu {
         flex-direction: column;
-        gap: 0;
-        padding: 20px;
+        gap: 16px;
     }
 
     .nav__menu a {
-        display: block;
-        padding: 14px 0;
-        font-size: 18px;
+        font-size: 20px;
+        padding: 12px 0;
     }
 
-    /* Actions чуть компактнее */
-    .nav__actions {
-        gap: 14px;
-    }
+    /*-----------HERO-----------------*/
 
     .hero {
         padding-top: 80px;
@@ -216,6 +244,7 @@
         line-height: 28px;
     }
 
+    /*SLIDER-SECTION*/
 
     .slider-row {
         height: 170px;
@@ -238,54 +267,49 @@
     .gradient-right {
         width: 120px;
     }
-/*    */
 
-    .values {
-        padding: 80px 0;
-    }
-
+    /* ------------------ values----------------------- */
     .values__container {
         grid-template-columns: 1fr;
     }
 
     .values__main-card {
-        max-width: 720px;
-        margin: 0 auto;
-    }
-
-    .values__grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 720px;
-        margin: 0 auto;
+        max-width: 100%;
     }
 
     .values__main-card h2 {
-        font-size: 40px;
-        line-height: 46px;
+        font-size: 48px;
+        line-height: 54px;
+    }
+
+    .values__grid {
+        grid-template-columns: 1fr 1fr;
     }
 
     .values__heart {
-        width: 160px;
+        position: absolute;
         top: -60px;
         right: -40px;
+        width: 180px;
     }
 
-/*    */
-    .stats {
-        padding: 100px 0;
-    }
-
+    /*  ------------------stats------------------  */
     .stats__container {
         grid-template-columns: 1fr;
-        gap: 48px;
     }
 
     .stats__title {
         text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .stats__title h2 {
+        font-size: 56px;
     }
 
     .stats__grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .stats__wave {
@@ -293,16 +317,44 @@
         opacity: 0.6;
     }
 
-/*    */
-
+    /*---------------------------PHOTOS-SECTION---------------------------------*/
+    /* Уменьшаем отступы секции */
     .photos-section {
-        max-width: 100%;
-        padding: 100px 24px;
-        column-gap: 24px;
+        padding: 100px 0;
     }
 
-    .photo2 {
-        margin-top: 120px;
+    /* Сжимаем сетку, но оставляем 2 колонки для шахматки */
+    .photos-grid {
+        gap: 20px; /* Было 200px, стало 20px */
+    }
+
+    /* Уменьшаем высоту картинок */
+    .photo {
+        height: 220px; /* Было 400px */
+        border-radius: 20px;
+    }
+
+    /* Уменьшаем сдвиг "шахматки" */
+    .photo:nth-child(even) {
+        margin-top: 80px; /* Было 260px. Должно быть заметно, но не огромно */
+    }
+
+    /* Карточка с текстом */
+    .photos-overlay__content {
+        padding: 30px 20px; /* Компактные отступы */
+        width: 85%;         /* Не на всю ширину, чтобы края фоток выглядывали */
+        max-width: 400px;
+        background: rgba(243, 243, 243, 0.95); /* Чуть прозрачности не помешает */
+    }
+
+    .photos-overlay__title {
+        font-size: 24px; /* Уменьшаем шрифт заголовка */
+        margin-bottom: 8px;
+    }
+
+    .photos-overlay__text {
+        font-size: 14px; /* Уменьшаем шрифт текста */
+        line-height: 1.4;
     }
 
     /*CTA-----------------------------*/
@@ -381,50 +433,36 @@
     .hero__content {
         max-width: 100%;
     }
-/*    */
 
+
+    /*---------------VALUES-----------------------*/
     .values {
-        padding: 60px 0;
-    }
-
-    .values__container {
-        padding: 0 16px;
-        gap: 24px;
+        padding: 60px 10px;
     }
 
     .values__main-card h2 {
-        font-size: 32px;
-        line-height: 38px;
+        font-size: 36px;
+        line-height: 40px;
         margin: 24px;
-    }
-
-    .values__image {
-        border-radius: 24px;
-    }
-
-    /* Сердце либо уменьшаем, либо убираем */
-    .values__heart {
-        /*display: none;*/
     }
 
     .values__grid {
         grid-template-columns: 1fr;
-        gap: 16px;
     }
 
     .value-card {
         min-height: auto;
         padding: 24px;
-        border-radius: 24px;
     }
 
     .value-card__text {
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 20px;
+        line-height: 26px;
+        max-width: 90%;
     }
 
-/*    */
 
+    /*----------STATS----------------*/
     .stats {
         padding: 80px 0;
     }
@@ -462,21 +500,24 @@
         /*display: none;*/
     }
 
-/*    */
-
-    .photos-section {
-        grid-template-columns: 1fr;
-        padding: 64px 16px;
-        row-gap: 32px;
+    /*-------------PHOTOS--------------------------*/
+    .photos-grid {
+        gap: 12px;
     }
 
     .photo {
-        width: 100%;
-        transform: translateY(60px);
+        height: 160px; /* Картинки меньше */
+        border-radius: 16px;
     }
 
-    .photo2 {
-        margin-top: 0;
+    .photo:nth-child(even) {
+        margin-top: 60px; /* Сдвиг меньше */
+    }
+
+    /* Текст должен быть максимально компактным */
+    .photos-overlay__content {
+        padding: 24px 16px;
+        width: 90%;
     }
 
     /*CTA-----------------------------------------*/
