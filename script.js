@@ -167,54 +167,6 @@ gsap.utils.toArray(".stats-card__number").forEach((el) => {
     });
 });
 
-// // PHOTO SECTION------------------------------------------------------------------
-// // Находим все секции с классом .photos-section и перебираем их по одной
-// gsap.utils.toArray(".photos-section").forEach((section) => {
-//
-//     // Внутри текущей секции находим нужные элементы
-//     const overlay = section.querySelector(".photos-overlay");
-//     const content = section.querySelector(".photos-overlay__content");
-//     const photos = section.querySelectorAll(".photo");
-//
-//     // 1. Логика "Прилипания" (Pinning) для текущей секции
-//     ScrollTrigger.create({
-//         trigger: section,    // Триггером является ИМЕННО ЭТА секция
-//         start: "top top",
-//         end: "bottom bottom",
-//         pin: overlay,        // Закрепляем ИМЕННО ЭТОТ оверлей
-//         pinSpacing: false    // Важно: отключаем добавление отступов, так как оверлей absolute
-//     });
-//
-//     // 2. Анимация появления текста внутри текущей секции
-//     gsap.from(content, {
-//         scrollTrigger: {
-//             trigger: section,
-//             start: "top 60%",
-//             toggleActions: "play none none reverse"
-//         },
-//         y: 50,
-//         opacity: 0,
-//         duration: 0.8,
-//         ease: "power2.out"
-//     });
-//
-//     // 3. Анимация фото внутри текущей секции
-//     // Мы перебираем фото, чтобы добавить задержку (index * 0.1)
-//     // которая сбрасывается для каждой новой секции
-//     photos.forEach((photo, index) => {
-//         gsap.from(photo, {
-//             scrollTrigger: {
-//                 trigger: photo, // Каждое фото триггерит само себя
-//                 start: "top 85%",
-//                 toggleActions: "play none none reverse"
-//             },
-//             y: 100,
-//             opacity: 0,
-//             duration: 1,
-//             delay: index * 0.1 // Первая фото - 0с, вторая - 0.1с и т.д.
-//         });
-//     });
-// });
 
 // Перебираем все секции
 gsap.utils.toArray(".photos-section").forEach((section) => {
@@ -331,18 +283,126 @@ tlStudy.from(".step-card", {
     clearProps: "all"
 }, "-=0.6");
 
+// BEST-SLIDER
+// const track = document.querySelector(".best-track");
+// const originalCards = Array.from(track.children); // Запоминаем исходный набор
+//
+// // 1. ФУНКЦИЯ ЗАПОЛНЕНИЯ
+// // Клонируем карточки, пока трек не станет шире экрана
+// // (Это защитит от ситуации, когда карточек мало, а экран 4K)
+// const ensureTrackWidth = () => {
+//     // Если карточек вообще нет, выходим
+//     if (originalCards.length === 0) return;
+//
+//     // Пока ширина трека меньше ширины экрана (с запасом 500px), добавляем копии оригиналов
+//     while (track.scrollWidth < window.innerWidth + 500) {
+//         originalCards.forEach(card => {
+//             track.appendChild(card.cloneNode(true));
+//         });
+//     }
+// };
+//
+// // Вызываем функцию заполнения
+// ensureTrackWidth();
+//
+// // 2. ФИНАЛЬНОЕ ДУБЛИРОВАНИЕ ДЛЯ БЕСШОВНОСТИ
+// // Теперь, когда трек достаточно длинный, мы берем ВСЁ, что есть,
+// // и дублируем это один раз. Это нужно для трюка с x: -50%.
+// const currentCards = Array.from(track.children);
+// currentCards.forEach(card => {
+//     track.appendChild(card.cloneNode(true));
+// });
+//
+// // 3. Анимация (Такая же, как была)
+// const scrollSpeed = 50;
+// const totalWidth = track.scrollWidth;
+// const duration = totalWidth / scrollSpeed;
+//
+// const sliderAnimation = gsap.to(".best-track", {
+//     x: "-50%",
+//     ease: "none",
+//     duration: duration,
+//     repeat: -1,
+// });
+//
+// // 4. Пауза при наведении
+// const sliderContainer = document.querySelector(".best-slider");
+//
+// sliderContainer.addEventListener("mouseenter", () => {
+//     sliderAnimation.pause();
+// });
+//
+// sliderContainer.addEventListener("mouseleave", () => {
+//     sliderAnimation.play();
+// });
 
-const carousel = document.querySelector(".carousel");
-const btnPrev = document.querySelector(".prev");
-const btnNext = document.querySelector(".next");
+// 1. Создаем функцию инициализации одного слайдера
+function initInfiniteSlider(sliderContainer) {
 
-const cardWidth = 350; // ширина карточки + gap
+    // Ищем трек ИМЕННО ВНУТРИ текущего контейнера
+    const track = sliderContainer.querySelector(".best-track");
 
-btnNext.addEventListener("click", () => {
-    carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
-});
+    // Если трека нет (ошибка верстки), выходим
+    if (!track) return;
 
-btnPrev.addEventListener("click", () => {
-    carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    // --- ЛОГИКА КЛОНИРОВАНИЯ ---
+    const originalCards = Array.from(track.children);
+
+    // Если пусто, нечего анимировать
+    if (originalCards.length === 0) return;
+
+    // Клонируем, пока не заполним экран (защита от малого кол-ва карточек)
+    while (track.scrollWidth < window.innerWidth + 500) {
+        originalCards.forEach(card => {
+            track.appendChild(card.cloneNode(true));
+        });
+    }
+
+    // Финальное дублирование всего набора для бесшовного цикла
+    const currentCards = Array.from(track.children);
+    currentCards.forEach(card => {
+        track.appendChild(card.cloneNode(true));
+    });
+
+    // --- GSAP АНИМАЦИЯ ---
+    const scrollSpeed = 50;
+    const totalWidth = track.scrollWidth;
+    const duration = totalWidth / scrollSpeed;
+
+    const sliderAnimation = gsap.to(track, {
+        x: "-50%", // Двигаем трек
+        ease: "none",
+        duration: duration,
+        repeat: -1,
+    });
+
+    // --- ПАУЗА ПРИ НАВЕДЕНИИ ---
+    // Вешаем слушатели на текущий контейнер
+    sliderContainer.addEventListener("mouseenter", () => {
+        sliderAnimation.pause();
+    });
+
+    sliderContainer.addEventListener("mouseleave", () => {
+        sliderAnimation.play();
+    });
+
+    // --- ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (Опционально) ---
+    gsap.from(sliderContainer, {
+        scrollTrigger: {
+            trigger: sliderContainer, // Триггер - сам текущий слайдер
+            start: "top 85%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out"
+    });
+}
+
+// 2. Находим ВСЕ слайдеры на странице и запускаем функцию для каждого
+const allSliders = document.querySelectorAll('.best-slider');
+
+allSliders.forEach(slider => {
+    initInfiniteSlider(slider);
 });
 
