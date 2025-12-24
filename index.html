@@ -332,62 +332,174 @@
 </section>
 
 <section class="courses">
-    <h2 class="courses-title" data-i18n="courses_title">Курсы</h2>
+    <div class="courses__header">
+        <h2 class="courses-title" data-i18n="courses_title">Курсы</h2>
 
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="courses-card">
-                <img src="assets/img/math.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_math_title">Математика</h3>
-                <p class="courses-card__text" data-i18n="course_math_text">Освоение ключевых тем 7–8 классов и решение практических задач.</p>
+        <div class="toggle-container">
+            <button class="toggle-btn course-toggle active" data-target="course-tab-8">Для 8-класса</button>
+            <button class="toggle-btn course-toggle" data-target="course-tab-9">Для 9-класса</button>
+        </div>
+    </div>
+
+    <div id="course-tab-8" class="course-tab-content">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="courses-card">
+                    <img src="assets/img/math.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_math_title">Математика</h3>
+                    <p class="courses-card__text" data-i18n="course_math_text">Освоение ключевых тем 7–8 классов и решение практических задач.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/physics.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_physics_title">Физика</h3>
+                    <p class="courses-card__text" data-i18n="course_physics_text">Разбор основных тем и изучение фундаментальных физических явлений.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/chemistry.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_chemistry_title">Химия</h3>
+                    <p class="courses-card__text" data-i18n="course_chemistry_text">Системное изучение химических понятий и процессов.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/biology.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_biology_title">Биология</h3>
+                    <p class="courses-card__text" data-i18n="course_biology_text">Изучение основ биологических процессов.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/english.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_english_title">Английский</h3>
+                    <p class="courses-card__text" data-i18n="course_english_text">Грамотное чтение, устная и письменная речь.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/geography.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_geography_title">География</h3>
+                    <p class="courses-card__text" data-i18n="course_geography_text">Изучение природных и социально-географических особенностей мирасогласно программе 7–8 классов.</p>
+                </div>
             </div>
 
-            <div class="courses-card">
-                <img src="assets/img/physics.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_physics_title">Физика</h3>
-                <p class="courses-card__text" data-i18n="course_physics_text">Разбор основных тем и изучение фундаментальных физических явлений.</p>
-            </div>
-
-            <div class="courses-card">
-                <img src="assets/img/chemistry.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_chemistry_title">Химия</h3>
-                <p class="courses-card__text" data-i18n="course_chemistry_text">Системное изучение химических понятий и процессов.</p>
-            </div>
-
-            <div class="courses-card">
-                <img src="assets/img/biology.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_biology_title">Биология</h3>
-                <p class="courses-card__text" data-i18n="course_biology_text">Изучение основ биологических процессов.</p>
-            </div>
-
-            <div class="courses-card">
-                <img src="assets/img/english.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_english_title">Английский</h3>
-                <p class="courses-card__text" data-i18n="course_english_text">Грамотное чтение, устная и письменная речь.</p>
-            </div>
-
-            <div class="courses-card">
-                <img src="assets/img/geography.png" alt="" class="courses-card__img">
-                <h3 class="courses-card__title" data-i18n="course_geography_title">География</h3>
-                <p class="courses-card__text" data-i18n="course_geography_text">Изучение природных и социально-географических особенностей мирасогласно программе 7–8 классов.</p>
+            <div class="carousel-btn">
+                <button class="courses-nav prev">
+                    <img src="assets/icons/prev.png" alt="">
+                </button>
+                <button class="courses-nav next">
+                    <img src="assets/icons/next.png" alt="">
+                </button>
             </div>
         </div>
+    </div>
 
-        <div class="carousel-btn">
-            <button class="courses-nav prev">
-                <img src="assets/icons/prev.png" alt="">
-            </button>
-            <button class="courses-nav next">
-                <img src="assets/icons/next.png" alt="">
-            </button>
+    <div id="course-tab-9" class="course-tab-content" style="display: none;">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="courses-card">
+                    <img src="assets/img/math.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_math_title">Математика</h3>
+                    <p class="courses-card__text" data-i18n="course_math_text">Освоение ключевых тем 7–8 классов и решение практических задач.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/physics.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_physics_title">Физика</h3>
+                    <p class="courses-card__text" data-i18n="course_physics_text">Разбор основных тем и изучение фундаментальных физических явлений.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/chemistry.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_chemistry_title">Химия</h3>
+                    <p class="courses-card__text" data-i18n="course_chemistry_text">Системное изучение химических понятий и процессов.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/biology.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_biology_title">Биология</h3>
+                    <p class="courses-card__text" data-i18n="course_biology_text">Изучение основ биологических процессов.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/english.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_english_title">Английский</h3>
+                    <p class="courses-card__text" data-i18n="course_english_text">Грамотное чтение, устная и письменная речь.</p>
+                </div>
+
+                <div class="courses-card">
+                    <img src="assets/img/geography.png" alt="" class="courses-card__img">
+                    <h3 class="courses-card__title" data-i18n="course_geography_title">География</h3>
+                    <p class="courses-card__text" data-i18n="course_geography_text">Изучение природных и социально-географических особенностей мирасогласно программе 7–8 классов.</p>
+                </div>
+            </div>
+
+            <div class="carousel-btn">
+                <button class="courses-nav prev">
+                    <img src="assets/icons/prev.png" alt="">
+                </button>
+                <button class="courses-nav next">
+                    <img src="assets/icons/next.png" alt="">
+                </button>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="how-study">
-    <h2 class="title" data-i18n="how_study_title">Как проходит обучение</h2>
+    <div class="how-study__header">
+        <h2 class="title" data-i18n="how_study_title">Как проходит обучение</h2>
 
-    <div class="grid">
+        <div class="toggle-container">
+            <button class="toggle-btn active" data-target="tab-8">Для 8-класса</button>
+            <button class="toggle-btn" data-target="tab-9">Для 9-класса</button>
+        </div>
+    </div>
+
+    <div class="grid tab-content" id="tab-8">
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_01_title">Регистрация на курс</h3>
+            <p class="step-card__text" data-i18n="step_01_text">Ученик регистрируется на платформе, выбирает необходимый курс и язык обучения</p>
+            <img src="assets/icons/check.png" alt="" class="step-card__img">
+            <span class="num">01</span>
+        </div>
+
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_02_title">Входной тест</h3>
+            <p class="step-card__text" data-i18n="step_02_text">Проводится перед началом курса для определения уровня знаний ученика</p>
+            <img src="assets/icons/test.png" alt="" class="step-card__img">
+            <span class="num">02</span>
+        </div>
+
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_03_title">Участие в онлайн-уроках с тьютором</h3>
+            <p class="step-card__text" data-i18n="step_03_text">Онлайн-уроки проходят 2 раза в неделю на платформе Google Meet. Ссылку на урок можно найти в разделе “Онлайн урок”.</p>
+            <img src="assets/icons/video.png" alt="" class="step-card__img">
+            <span class="num">03</span>
+        </div>
+
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_04_title">Практическая работа</h3>
+            <p class="step-card__text" data-i18n="step_04_text">На каждом уроке учащиеся закрепляют свои знания практическими заданиями, которые выполняются на платформе во время урока.</p>
+            <img src="assets/icons/laptop.png" alt="" class="step-card__img">
+            <span class="num">04</span>
+        </div>
+
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_05_title">Домашнее задание</h3>
+            <p class="step-card__text" data-i18n="step_05_text">По завершении урока учащиеся проходят домашнее задание на платформе — его необходимо выполнить до следующего занятия</p>
+            <img src="assets/icons/target.png" alt="" class="step-card__img">
+            <span class="num">05</span>
+        </div>
+
+        <div class="step-card">
+            <h3 class="step-card__title" data-i18n="step_06_title">Итоговый контроль (тест)</h3>
+            <p class="step-card__text" data-i18n="step_06_text">Проводится в конце каждого месяца обучения для оценки прогресса и уровня усвоения материала.</p>
+            <img src="assets/icons/cup.png" alt="" class="step-card__img">
+            <span class="num">06</span>
+        </div>
+
+    </div>
+
+    <div class="grid tab-content" id="tab-9" style="display: none;">
         <div class="step-card">
             <h3 class="step-card__title" data-i18n="step_01_title">Регистрация на курс</h3>
             <p class="step-card__text" data-i18n="step_01_text">Ученик регистрируется на платформе, выбирает необходимый курс и язык обучения</p>

@@ -92,25 +92,23 @@ const tl = gsap.timeline({
 
 // 1. Анимация СЕРДЦА (Сверху вниз)
 tl.from(".values__heart", {
-    y: -100,      // Летит сверху (минусовое значение)
+    y: -100,
     opacity: 0,
     duration: 1.2,
-    ease: "back.out(1.7)", // Эффект пружинки при приземлении
+    ease: "back.out(1.7)",
 });
 
-// 2. Анимация ВСЕГО ОСТАЛЬНОГО (Снизу вверх)
-// Мы перечисляем селекторы через запятую в массиве
 tl.from([
     ".values__main-card h2",
     ".values__image",
     ".value-card"
 ], {
-    y: 50,       // Летят снизу (плюсовое значение)
+    y: 50,
     opacity: 0,
     duration: 1.2,
-    stagger: 0.1, // Карточки будут появляться "лесенкой" с задержкой 0.1с
+    stagger: 0.1,
     ease: "power2.out"
-}, "<"); // <--- ВАЖНО: Этот символ означает "начать одновременно с предыдущей анимацией (сердцем)"
+}, "<");
 
 
 // STATS-------------------------------------------------------------------------
@@ -133,238 +131,229 @@ gsap.from(".stats-card", {
     y: 50,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.1, // Карточки будут появляться по очереди
+    stagger: 0.1,
     ease: "power2.out"
 });
 
-// Находим все элементы с цифрами
 gsap.utils.toArray(".stats-card__number").forEach((el) => {
 
     // 1. Очищаем текст от пробелов и превращаем в число
-    // "16 000" превратится в число 16000
     const endValue = parseFloat(el.innerText.replace(/\s/g, ""));
 
-    // Создаем объект-счетчик, который начнет с 0
     const counter = { val: 0 };
 
     gsap.to(counter, {
-        val: endValue, // Анимируем значение объекта до конечной цифры
-        duration: 2,   // Длительность анимации (2 секунды)
-        ease: "power1.out", // Замедление к концу
+        val: endValue,
+        duration: 2,
+        ease: "power1.out",
 
         scrollTrigger: {
-            trigger: ".stats", // Запускаем, когда видна секция
+            trigger: ".stats",
             start: "top 80%",
-            toggleActions: "play none none reverse" // При скролле вверх цифры сбросятся
+            toggleActions: "play none none reverse"
         },
 
-        // Самая важная часть: обновление текста на каждом кадре
         onUpdate: function() {
-            // Math.ceil округляет дроби до целого
-            // toLocaleString('ru-RU') добавляет пробелы (16 000)
             el.innerText = Math.ceil(counter.val).toLocaleString('ru-RU');
         }
     });
 });
 
 
-// Перебираем все секции
 gsap.utils.toArray(".photos-section").forEach((section) => {
-
-    // Находим элементы внутри секции
     const overlay = section.querySelector(".photos-overlay");
     const content = section.querySelector(".photos-overlay__content");
     const photos = section.querySelectorAll(".photo");
 
-    // 1. Логика "Прилипания" (Работает везде)
     ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        pin: overlay,       // Текст прилипает
-        pinSpacing: false   // Отступы не добавляем
+        pin: overlay,
+        pinSpacing: false
     });
 
-    // 2. Анимация текста
     gsap.from(content, {
         scrollTrigger: {
             trigger: section,
             start: "top 60%",
             toggleActions: "play none none reverse"
         },
-        y: 30, // Чуть меньше амплитуда для аккуратности
+        y: 30,
         opacity: 0,
         duration: 0.8,
         ease: "power2.out"
     });
 
-    // 3. Анимация фото
     photos.forEach((photo, index) => {
         gsap.from(photo, {
             scrollTrigger: {
                 trigger: photo,
-                start: "top 90%", // На мобилке лучше срабатывать раньше (90%)
+                start: "top 90%",
                 toggleActions: "play none none reverse"
             },
             y: 50,
             opacity: 0,
             duration: 0.8,
-            delay: index * 0.1 // Задержка лесенкой
+            delay: index * 0.1
         });
     });
 });
 
 // COURSES-SECTION
-// Создаем сценарий (timeline) для секции курсов
+// const tlCourses = gsap.timeline({
+//     scrollTrigger: {
+//         trigger: ".courses",
+//         start: "top 75%",
+//         toggleActions: "play none none reverse"
+//     }
+// });
+//
+// tlCourses.from(".courses-title", {
+//     y: 50,
+//     opacity: 0,
+//     duration: 0.8,
+//     ease: "power2.out"
+// });
+//
+// tlCourses.from(".courses-card", {
+//     y: 100,
+//     opacity: 0,
+//     duration: 0.8,
+//     stagger: 0.1,
+//     ease: "back.out(1.2)",
+//
+//     clearProps: "all"
+// }, "-=0.6");
+//
+// tlCourses.from(".carousel-btn", {
+//     y: 20,
+//     opacity: 0,
+//     duration: 0.6,
+//     ease: "power2.out"
+// }, "-=0.5");
+
 const tlCourses = gsap.timeline({
     scrollTrigger: {
-        trigger: ".courses", // Триггер - сама секция
-        start: "top 75%",    // Старт, когда верх секции на 75% экрана
-        toggleActions: "play none none reverse" // Проигрываем при входе, реверс при уходе
+        trigger: ".courses",
+        start: "top 75%",
+        toggleActions: "play none none reverse"
     }
 });
 
-// 1. Анимация Заголовка
+// Шаг 1: Заголовок
 tlCourses.from(".courses-title", {
-    y: 50,          // Снизу
-    opacity: 0,     // Из прозрачности
+    y: 50,
+    opacity: 0,
     duration: 0.8,
     ease: "power2.out"
 });
 
-// 2. Анимация Карточек (Волна)
+// Шаг 2: КНОПКИ ПЕРЕКЛЮЧЕНИЯ (Новое)
+tlCourses.from(".courses .toggle-container", {
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    ease: "power2.out"
+}, "-=0.6");
+
+// Шаг 3: Карточки слайдера
 tlCourses.from(".courses-card", {
-    y: 100,         // Карточки летят с большей глубины
+    y: 100,
     opacity: 0,
     duration: 0.8,
-    stagger: 0.1,   // Задержка между каждой карточкой 0.1 сек
-    ease: "back.out(1.2)", // Легкий пружинящий эффект
-
-    // ОЧЕНЬ ВАЖНО для твоего ховера:
-    // После окончания анимации удаляем стили GSAP, чтобы заработал CSS :hover
+    stagger: 0.1,
+    ease: "back.out(1.2)",
     clearProps: "all"
-}, "-=0.6"); // Начинаем этот шаг за 0.6 сек до окончания анимации заголовка (наложение)
+}, "-=0.4");
 
-// 3. Анимация кнопок
+// Шаг 4: Кнопки навигации (стрелки внизу)
 tlCourses.from(".carousel-btn", {
     y: 20,
     opacity: 0,
     duration: 0.6,
     ease: "power2.out"
-}, "-=0.5"); // Тоже небольшой нахлест по времени
+}, "-=0.5");
 
 
 // HOW-STUDY
 const tlStudy = gsap.timeline({
     scrollTrigger: {
         trigger: ".how-study",
-        start: "top 75%", // Анимация начнется, когда верх секции будет на 75% экрана
+        start: "top 75%",
         toggleActions: "play none none reverse"
     }
 });
 
-// 1. Анимация заголовка
+// Шаг 1: Заголовок
 tlStudy.from(".how-study .title", {
-    y: 50,          // Выезжает снизу
-    opacity: 0,     // Из прозрачности
+    y: 50,
+    opacity: 0,
     duration: 0.8,
     ease: "power2.out"
 });
 
-// 2. Анимация карточек (Grid)
-tlStudy.from(".step-card", {
-    y: 100,         // Карточки едут с большей глубины
+// Шаг 2: КНОПКИ ПЕРЕКЛЮЧЕНИЯ (Новое)
+// Появляются сразу после начала заголовка с небольшим нахлестом
+tlStudy.from(".how-study .toggle-container", {
+    y: 30,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,   // Каждая следующая карточка появляется с задержкой 0.1с
-    ease: "power2.out",
-
-    // Важно: чистим стили после анимации, чтобы не мешать возможным будущим CSS трансформациям
-    clearProps: "all"
+    duration: 0.6,
+    ease: "power2.out"
 }, "-=0.6");
 
-// BEST-SLIDER
-// const track = document.querySelector(".best-track");
-// const originalCards = Array.from(track.children); // Запоминаем исходный набор
-//
-// // 1. ФУНКЦИЯ ЗАПОЛНЕНИЯ
-// // Клонируем карточки, пока трек не станет шире экрана
-// // (Это защитит от ситуации, когда карточек мало, а экран 4K)
-// const ensureTrackWidth = () => {
-//     // Если карточек вообще нет, выходим
-//     if (originalCards.length === 0) return;
-//
-//     // Пока ширина трека меньше ширины экрана (с запасом 500px), добавляем копии оригиналов
-//     while (track.scrollWidth < window.innerWidth + 500) {
-//         originalCards.forEach(card => {
-//             track.appendChild(card.cloneNode(true));
-//         });
+// Шаг 3: Карточки
+tlStudy.from(".step-card", {
+    y: 100,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power2.out",
+    clearProps: "all"
+}, "-=0.4");
+
+// const tlStudy = gsap.timeline({
+//     scrollTrigger: {
+//         trigger: ".how-study",
+//         start: "top 75%",
+//         toggleActions: "play none none reverse"
 //     }
-// };
-//
-// // Вызываем функцию заполнения
-// ensureTrackWidth();
-//
-// // 2. ФИНАЛЬНОЕ ДУБЛИРОВАНИЕ ДЛЯ БЕСШОВНОСТИ
-// // Теперь, когда трек достаточно длинный, мы берем ВСЁ, что есть,
-// // и дублируем это один раз. Это нужно для трюка с x: -50%.
-// const currentCards = Array.from(track.children);
-// currentCards.forEach(card => {
-//     track.appendChild(card.cloneNode(true));
 // });
 //
-// // 3. Анимация (Такая же, как была)
-// const scrollSpeed = 50;
-// const totalWidth = track.scrollWidth;
-// const duration = totalWidth / scrollSpeed;
-//
-// const sliderAnimation = gsap.to(".best-track", {
-//     x: "-50%",
-//     ease: "none",
-//     duration: duration,
-//     repeat: -1,
+// tlStudy.from(".how-study .title", {
+//     y: 50,
+//     opacity: 0,
+//     duration: 0.8,
+//     ease: "power2.out"
 // });
 //
-// // 4. Пауза при наведении
-// const sliderContainer = document.querySelector(".best-slider");
+// tlStudy.from(".step-card", {
+//     y: 100,
+//     opacity: 0,
+//     duration: 0.8,
+//     stagger: 0.1,
+//     ease: "power2.out",
 //
-// sliderContainer.addEventListener("mouseenter", () => {
-//     sliderAnimation.pause();
-// });
-//
-// sliderContainer.addEventListener("mouseleave", () => {
-//     sliderAnimation.play();
-// });
+//     clearProps: "all"
+// }, "-=0.6");
 
-// 1. Создаем функцию инициализации одного слайдера
+// BEST-SLIDER
 function initInfiniteSlider(sliderContainer) {
-
-    // Ищем трек ИМЕННО ВНУТРИ текущего контейнера
     const track = sliderContainer.querySelector(".best-track");
-
-    // Если трека нет (ошибка верстки), выходим
     if (!track) return;
-
-    // --- ЛОГИКА КЛОНИРОВАНИЯ ---
     const originalCards = Array.from(track.children);
-
-    // Если пусто, нечего анимировать
     if (originalCards.length === 0) return;
-
-    // Клонируем, пока не заполним экран (защита от малого кол-ва карточек)
     while (track.scrollWidth < window.innerWidth + 500) {
         originalCards.forEach(card => {
             track.appendChild(card.cloneNode(true));
         });
     }
 
-    // Финальное дублирование всего набора для бесшовного цикла
     const currentCards = Array.from(track.children);
     currentCards.forEach(card => {
         track.appendChild(card.cloneNode(true));
     });
 
-    // --- GSAP АНИМАЦИЯ ---
     const scrollSpeed = 50;
     const totalWidth = track.scrollWidth;
     const duration = totalWidth / scrollSpeed;
@@ -376,8 +365,6 @@ function initInfiniteSlider(sliderContainer) {
         repeat: -1,
     });
 
-    // --- ПАУЗА ПРИ НАВЕДЕНИИ ---
-    // Вешаем слушатели на текущий контейнер
     sliderContainer.addEventListener("mouseenter", () => {
         sliderAnimation.pause();
     });
@@ -386,10 +373,9 @@ function initInfiniteSlider(sliderContainer) {
         sliderAnimation.play();
     });
 
-    // --- ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (Опционально) ---
     gsap.from(sliderContainer, {
         scrollTrigger: {
-            trigger: sliderContainer, // Триггер - сам текущий слайдер
+            trigger: sliderContainer,
             start: "top 85%",
         },
         y: 50,
@@ -399,10 +385,109 @@ function initInfiniteSlider(sliderContainer) {
     });
 }
 
-// 2. Находим ВСЕ слайдеры на странице и запускаем функцию для каждого
 const allSliders = document.querySelectorAll('.best-slider');
 
 allSliders.forEach(slider => {
     initInfiniteSlider(slider);
 });
 
+// COURSES BTN-------------------------------------------------------------------------------
+const courseToggles = document.querySelectorAll('.course-toggle');
+const courseContents = document.querySelectorAll('.course-tab-content');
+
+courseToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+
+        courseToggles.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const targetId = btn.getAttribute('data-target');
+        const targetContent = document.getElementById(targetId);
+
+        gsap.to(courseContents, {
+            opacity: 0,
+            y: 20,
+            duration: 0.3,
+            onComplete: () => {
+                courseContents.forEach(el => el.style.display = 'none');
+
+                targetContent.style.display = 'block';
+                gsap.set(targetContent, { y: 20, opacity: 0 });
+
+                gsap.to(targetContent, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "power2.out",
+                    onStart: () => {
+                        const cards = targetContent.querySelectorAll('.courses-card');
+                        gsap.fromTo(cards,
+                            { y: 50, opacity: 0 },
+                            { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, clearProps: "all" }
+                        );
+                    }
+                });
+            }
+        });
+    });
+});
+
+document.querySelectorAll('.courses-nav').forEach(button => {
+    button.addEventListener('click', function() {
+        const container = this.closest('.carousel-container');
+        const carousel = container.querySelector('.carousel');
+
+        const direction = this.classList.contains('next') ? 1 : -1;
+        const scrollAmount = 350;
+
+        carousel.scrollBy({
+            left: scrollAmount * direction,
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+// how-study btn------------------------------------------------------------------------------
+const toggleBtns = document.querySelectorAll('.toggle-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+
+        toggleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const targetId = btn.getAttribute('data-target');
+        const targetContent = document.getElementById(targetId);
+
+        gsap.to(tabContents, {
+            opacity: 0,
+            y: 20, // Немного сдвигаем вниз при исчезновении
+            duration: 0.3,
+            onComplete: () => {
+                tabContents.forEach(el => el.style.display = 'none');
+
+                targetContent.style.display = 'grid'; // Возвращаем display: grid
+                gsap.set(targetContent, { y: 20, opacity: 0 }); // Ставим начальную позицию
+
+                gsap.to(targetContent, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "power2.out",
+
+                    onStart: () => {
+                        const cards = targetContent.querySelectorAll('.step-card');
+                        gsap.fromTo(cards,
+                            { y: 30, opacity: 0 },
+                            { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, clearProps: "all" }
+                        );
+                    }
+                });
+            }
+        });
+    });
+});
