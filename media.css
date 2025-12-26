@@ -67,6 +67,10 @@
         font-size: 72px;
     }
 
+    .courses-title {
+        font-size: 64px;
+    }
+
     .how-study {
         padding: 100px 0;
     }
@@ -215,6 +219,13 @@
         font-size: 16px;
     }
 
+    .courses-title {
+        font-size: 56px;
+    }
+
+    .courses__header {
+        gap: 24px;
+    }
 
     .grid {
         grid-template-columns: repeat(3, 1fr);
@@ -444,6 +455,21 @@
     }
 
 
+    .courses__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .courses-title {
+        font-size: 48px;
+    }
+
+    .toggle-container {
+        align-self: flex-start;
+    }
+
+
     .how-study {
         padding: 90px 0;
     }
@@ -654,6 +680,27 @@
     .cta-image {
         max-width: 260px;
         display: none;
+    }
+
+
+    .courses__header {
+        align-items: center;
+        text-align: center;
+    }
+
+    .courses-title {
+        font-size: 36px;
+    }
+
+    .toggle-container {
+        width: 100%;
+        padding: 6px;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        padding: 14px 0;
+        font-size: 15px;
     }
 
 

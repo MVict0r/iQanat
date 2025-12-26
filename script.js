@@ -333,35 +333,46 @@ gsap.utils.toArray(".stats-card__number").forEach((el) => {
 
 const sections = gsap.utils.toArray(".photos-section");
 
-// 1. Предварительная настройка: делаем все тексты FIXED и невидимыми
-// Это сработает и на мобилке, и на десктопе
+// 1. Предварительная настройка (без изменений)
 sections.forEach((section) => {
     const overlay = section.querySelector(".photos-overlay");
-
-    // Принудительно ставим fixed через JS, чтобы перебить любые CSS настройки
     gsap.set(overlay, {
         position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
         height: "100vh",
-        autoAlpha: 0, // Скрыто по умолчанию
+        autoAlpha: 0,
         zIndex: 10,
-        pointerEvents: "none" // Чтобы можно было скроллить сквозь оверлей
+        pointerEvents: "none"
     });
 });
 
-// 2. Логика переключения текста
+// 2. ГЛОБАЛЬНЫЙ ПРЕДОХРАНИТЕЛЬ (ИСПРАВЛЕННЫЙ)
+ScrollTrigger.create({
+    trigger: ".all-photos-wrapper",
+    start: "top top",
+    end: "bottom bottom",
+    // ИСПРАВЛЕНИЕ: Используем gsap.to вместо gsap.set для плавного исчезновения
+    onLeave: () => {
+        gsap.to(".photos-overlay", { autoAlpha: 0, duration: 0.5, overwrite: true });
+    },
+    onLeaveBack: () => {
+        gsap.to(".photos-overlay", { autoAlpha: 0, duration: 0.5, overwrite: true });
+    }
+});
+
+// 3. Логика секций
 sections.forEach((section, i) => {
     const overlay = section.querySelector(".photos-overlay");
     const photos = section.querySelectorAll(".photo");
 
-    // --- АНИМАЦИЯ ФОТО (Снизу вверх) ---
+    // Анимация фото
     photos.forEach((photo, index) => {
         gsap.from(photo, {
             scrollTrigger: {
                 trigger: photo,
-                start: "top 90%", // На мобилке лучше чуть раньше
+                start: "top 95%",
                 toggleActions: "play none none reverse"
             },
             y: 50,
@@ -371,9 +382,9 @@ sections.forEach((section, i) => {
         });
     });
 
-    // --- ЛОГИКА ТЕКСТА (ПРИЛИПАНИЕ) ---
+    // --- ЛОГИКА ТЕКСТА ---
 
-    // Сценарий для ПЕРВОЙ секции (Въезд сверху)
+    // Сценарий для ПЕРВОЙ секции
     if (i === 0) {
         gsap.fromTo(overlay,
             { y: -window.innerHeight, autoAlpha: 1 },
@@ -390,48 +401,57 @@ sections.forEach((section, i) => {
             }
         );
 
-        // Исчезновение первой секции при скролле дальше
+        // Доп. триггер для правильного поведения при перезагрузке и скролле назад
         ScrollTrigger.create({
             trigger: section,
             start: "bottom center",
-            onLeave: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 }),
-            onEnterBack: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 })
+            onLeave: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.5 }), // 0.5 сек для плавности
+            onEnterBack: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.5 }),
+
+            // Фикс бага "залипания" при перезагрузке
+            onRefresh: (self) => {
+                if (self.progress === 1) {
+                    gsap.set(overlay, { autoAlpha: 0 });
+                }
+            }
         });
     }
 
-    // Сценарий для ПОСЛЕДНЕЙ секции (Уезд наверх)
+    // Сценарий для ПОСЛЕДНЕЙ секции
     else if (i === sections.length - 1) {
-        // Появление
         ScrollTrigger.create({
             trigger: section,
             start: "top center",
-            onEnter: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
-            onLeaveBack: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 })
+            onEnter: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.5 }),
+            onLeaveBack: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.5 })
         });
 
-        // Уезд наверх
+        // Анимация уезда наверх
         gsap.to(overlay, {
             y: -window.innerHeight,
             ease: "none",
             scrollTrigger: {
                 trigger: section,
                 start: "bottom bottom",
-                end: "bottom top",
+                end: "bottom top", // Когда низ секции уходит за верх экрана
                 scrub: 1
             }
         });
     }
 
-    // Сценарий для СРЕДНИХ секций (Просто смена прозрачности)
+    // Сценарий для СРЕДНИХ секций
     else {
         ScrollTrigger.create({
             trigger: section,
             start: "top center",
             end: "bottom center",
-            onEnter: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
-            onLeave: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 }),
-            onEnterBack: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
-            onLeaveBack: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 })
+            onToggle: (self) => {
+                if (self.isActive) {
+                    gsap.to(overlay, { autoAlpha: 1, duration: 0.5, overwrite: true });
+                } else {
+                    gsap.to(overlay, { autoAlpha: 0, duration: 0.5, overwrite: true });
+                }
+            }
         });
     }
 });

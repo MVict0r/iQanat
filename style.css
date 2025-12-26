@@ -1040,7 +1040,8 @@ body {
 
 .news__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 304px);
+    justify-content: center;
     gap: 20px;
     margin-bottom: 40px;
 }
