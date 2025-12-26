@@ -622,30 +622,21 @@ body {
     /*pointer-events: auto;*/
 
     background: #F3F3F3;
-
-    /* 1. ФИКСИРУЕМ РАЗМЕРЫ */
-    width: 100%;           /* Ширина */
-    max-width: 820px;      /* Максимальная ширина */
-
-    /* Самое важное: задаем минимальную высоту.
-       Подберите число (например, 400px), чтобы туда влезал самый длинный текст */
+    width: 100%;
+    max-width: 820px;
     min-height: 200px;
-
-    /* 2. ЦЕНТРИРУЕМ КОНТЕНТ ВНУТРИ */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Вертикальное центрирование */
-    align-items: center;     /* Горизонтальное центрирование */
+    justify-content: center;
+    align-items: center;
 
-    /* Отступы */
-    padding: 40px 36px;      /* Уменьшил вертикальные отступы, т.к. высота теперь фиксирована */
+    padding: 40px 36px;
 
     border-radius: 28px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     pointer-events: auto;
 
-    /* Для плавности, если вдруг блок все же решит растянуться */
     transition: min-height 0.3s ease;
 }
 
@@ -887,6 +878,10 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
+.grid > .step-card:last-child {
+    grid-column: 2 / 3;
+}
+
 
 .step-card {
     background: #F3F3F3;
