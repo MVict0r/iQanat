@@ -159,80 +159,179 @@ gsap.utils.toArray(".stats-card__number").forEach((el) => {
     });
 });
 
+//----------------------------------------------------PHOTOS SECTIONS
+// gsap.utils.toArray(".photos-section").forEach((section) => {
+//     const overlay = section.querySelector(".photos-overlay");
+//     const content = section.querySelector(".photos-overlay__content");
+//     const photos = section.querySelectorAll(".photo");
+//
+//     ScrollTrigger.create({
+//         trigger: section,
+//         start: "top top",
+//         end: "bottom bottom",
+//         pin: overlay,
+//         pinSpacing: false
+//     });
+//
+//     gsap.from(content, {
+//         scrollTrigger: {
+//             trigger: section,
+//             start: "top 60%",
+//             toggleActions: "play none none reverse"
+//         },
+//         y: 30,
+//         opacity: 0,
+//         duration: 0.8,
+//         ease: "power2.out"
+//     });
+//
+//     photos.forEach((photo, index) => {
+//         gsap.from(photo, {
+//             scrollTrigger: {
+//                 trigger: photo,
+//                 start: "top 90%",
+//                 toggleActions: "play none none reverse"
+//             },
+//             y: 50,
+//             opacity: 0,
+//             duration: 0.8,
+//             delay: index * 0.1
+//         });
+//     });
+// });
 
-gsap.utils.toArray(".photos-section").forEach((section) => {
-    const overlay = section.querySelector(".photos-overlay");
-    const content = section.querySelector(".photos-overlay__content");
-    const photos = section.querySelectorAll(".photo");
+let mm = gsap.matchMedia();
 
-    ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom bottom",
-        pin: overlay,
-        pinSpacing: false
+// === ДЕСКТОП (Больше 992px) ===
+mm.add("(min-width: 993px)", () => {
+
+    const sections = gsap.utils.toArray(".photos-section");
+
+    // 1. Предварительная настройка: делаем все тексты FIXED и невидимыми
+    sections.forEach((section) => {
+        const overlay = section.querySelector(".photos-overlay");
+        gsap.set(overlay, {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            autoAlpha: 0 // opacity: 0 + visibility: hidden
+        });
     });
 
-    gsap.from(content, {
-        scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            toggleActions: "play none none reverse"
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out"
+    // 2. Логика переключения текста
+    sections.forEach((section, i) => {
+        const overlay = section.querySelector(".photos-overlay");
+        const photos = section.querySelectorAll(".photo");
+
+        // --- АНИМАЦИЯ ФОТО (Снизу вверх) ---
+        photos.forEach((photo, index) => {
+            gsap.from(photo, {
+                scrollTrigger: {
+                    trigger: photo,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 80,
+                opacity: 0,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+
+        // --- ЛОГИКА ТЕКСТА ---
+
+        // Сценарий для ПЕРВОЙ секции (Въезд сверху)
+        if (i === 0) {
+            gsap.fromTo(overlay,
+                { y: -window.innerHeight, autoAlpha: 1 }, // Старт: высоко сверху
+                {
+                    y: 0, // Конец: по центру
+                    autoAlpha: 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top bottom", // Начало секции касается низа экрана
+                        end: "center center", // Центр секции в центре экрана
+                        scrub: 1, // Привязать к скроллу
+                    }
+                }
+            );
+
+            // Логика исчезновения первой секции, когда скроллим дальше
+            ScrollTrigger.create({
+                trigger: section,
+                start: "bottom center",
+                onLeave: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 }),
+                onEnterBack: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 })
+            });
+        }
+
+        // Сценарий для ПОСЛЕДНЕЙ секции (Уезд наверх)
+        else if (i === sections.length - 1) {
+            // Появление (стандартное)
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center",
+                onEnter: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
+                onLeaveBack: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 })
+            });
+
+            // Уезд наверх вместе с концом секции
+            gsap.to(overlay, {
+                y: -window.innerHeight, // Улетаем вверх
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "bottom bottom", // Когда низ секции касается низа экрана
+                    end: "bottom top",      // Когда низ секции уходит вверх
+                    scrub: 1
+                }
+            });
+        }
+
+        // Сценарий для СРЕДНИХ секций (Просто Fade In/Out)
+        else {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center",    // Когда верх дошел до центра
+                end: "bottom center",   // Когда низ дошел до центра
+                onEnter: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
+                onLeave: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 }),
+                onEnterBack: () => gsap.to(overlay, { autoAlpha: 1, duration: 0.3 }),
+                onLeaveBack: () => gsap.to(overlay, { autoAlpha: 0, duration: 0.3 })
+            });
+        }
+    });
+});
+
+// === МОБИЛЬНЫЕ (Меньше 992px) ===
+mm.add("(max-width: 992px)", () => {
+    // На мобилках возвращаем relative (через CSS оно уже стоит,
+    // но на всякий случай сбрасываем инлайн стили от GSAP)
+    gsap.set(".photos-overlay", {
+        position: "relative",
+        top: "auto",
+        opacity: 1,
+        visibility: "visible",
+        y: 0
     });
 
-    photos.forEach((photo, index) => {
-        gsap.from(photo, {
+    // Простая анимация появления
+    gsap.utils.toArray(".photos-section").forEach((section) => {
+        const content = section.querySelector(".photos-overlay__content");
+        gsap.from(content, {
             scrollTrigger: {
-                trigger: photo,
-                start: "top 90%",
-                toggleActions: "play none none reverse"
+                trigger: section,
+                start: "top 80%"
             },
-            y: 50,
+            y: 30,
             opacity: 0,
-            duration: 0.8,
-            delay: index * 0.1
+            duration: 0.8
         });
     });
 });
 
 // COURSES-SECTION
-// const tlCourses = gsap.timeline({
-//     scrollTrigger: {
-//         trigger: ".courses",
-//         start: "top 75%",
-//         toggleActions: "play none none reverse"
-//     }
-// });
-//
-// tlCourses.from(".courses-title", {
-//     y: 50,
-//     opacity: 0,
-//     duration: 0.8,
-//     ease: "power2.out"
-// });
-//
-// tlCourses.from(".courses-card", {
-//     y: 100,
-//     opacity: 0,
-//     duration: 0.8,
-//     stagger: 0.1,
-//     ease: "back.out(1.2)",
-//
-//     clearProps: "all"
-// }, "-=0.6");
-//
-// tlCourses.from(".carousel-btn", {
-//     y: 20,
-//     opacity: 0,
-//     duration: 0.6,
-//     ease: "power2.out"
-// }, "-=0.5");
-
 const tlCourses = gsap.timeline({
     scrollTrigger: {
         trigger: ".courses",

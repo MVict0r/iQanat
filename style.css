@@ -566,25 +566,27 @@ body {
 
 
 /*GSAP photo*/
-/* Контейнер секции */
+.all-photos-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 .photos-section {
-    position: relative; /* Важно для позиционирования текста */
+    position: relative;
     max-width: 90%;
     margin: 0 auto;
     padding: 170px 0;
-    min-height: 100vh; /* Чтобы было где скроллить */
-    overflow: hidden; /* Скрываем вылеты анимации */
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-/* Сетка для фотографий */
 .photos-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Две колонки */
-    gap: 200px; /* Отступы между фото */
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;
     width: 100%;
 }
 
-/* Стили самих фото */
 .photo {
     width: 100%;
     height: 400px;
@@ -593,31 +595,22 @@ body {
     display: block;
 }
 
-/* Эффект "шахмат": сдвигаем каждую четную картинку вниз */
 .photo:nth-child(even) {
     margin-top: 260px;
 }
-
-/* Блок с текстом: по центру поверх всего */
 .photos-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Высота экрана */
-
-    /* Центрируем контент внутри этого блока-обертки */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     z-index: 10;
-
-    /* ВАЖНО: пропускаем клики сквозь пустые места, чтобы не блокировать скролл */
     pointer-events: none;
 }
-/* Сама карточка с текстом */
 .photos-overlay__content {
     background: #F3F3F3;
     padding: 80px 36px;
@@ -625,8 +618,6 @@ body {
     max-width: 820px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-
-    /* Включаем клики обратно для самой карточки (если там будут кнопки) */
     pointer-events: auto;
 }
 
