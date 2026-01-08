@@ -536,30 +536,6 @@ tlStudy.from(".step-card", {
     clearProps: "all"
 }, "-=0.4");
 
-// const tlStudy = gsap.timeline({
-//     scrollTrigger: {
-//         trigger: ".how-study",
-//         start: "top 75%",
-//         toggleActions: "play none none reverse"
-//     }
-// });
-//
-// tlStudy.from(".how-study .title", {
-//     y: 50,
-//     opacity: 0,
-//     duration: 0.8,
-//     ease: "power2.out"
-// });
-//
-// tlStudy.from(".step-card", {
-//     y: 100,
-//     opacity: 0,
-//     duration: 0.8,
-//     stagger: 0.1,
-//     ease: "power2.out",
-//
-//     clearProps: "all"
-// }, "-=0.6");
 
 // BEST-SLIDER
 function initInfiniteSlider(sliderContainer) {

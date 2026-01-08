@@ -882,10 +882,6 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
-.grid > .step-card:last-child {
-    grid-column: 2 / 3;
-}
-
 
 .step-card {
     background: #F3F3F3;
@@ -897,6 +893,10 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     transition: background-color 0.3s ease;
+}
+
+.step-card:nth-child(3n + 1):last-child {
+    grid-column: 2;
 }
 
 .step-card__title {

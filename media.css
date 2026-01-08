@@ -703,7 +703,7 @@
         font-size: 15px;
     }
 
-
+    /*------------how-study------------------*/
     .how-study {
         padding: 70px 0;
     }
@@ -714,13 +714,22 @@
     }
 
     .grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr; /* Строго одна колонка */
         gap: 16px;
     }
 
     .step-card {
         min-height: auto;
         padding: 24px;
+    }
+
+    .step-card:nth-child(3n + 1):last-child {
+        grid-column: auto;
+    }
+
+    .grid > .step-card:last-child {
+        grid-column: auto;
     }
 
     .step-card__title {
